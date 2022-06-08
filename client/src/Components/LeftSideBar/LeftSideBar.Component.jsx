@@ -7,11 +7,8 @@ import TabList from './TabList/TabList'
 export default function LeftSideBar() {
   return (
     <div className='flex flex-col p-4 mt-2'>
-        <UserCard profilePicture={FaRegUser } />
+        <UserCard name="Ahmad Nur Farwaid" username="fawaii" profilePicture={FaRegUser }  />
         <TabList />
-        
-        
-
     </div>
   )
 }

@@ -6,11 +6,11 @@ import Navbar from '../Components/Navbar/Navbar.Component';
 
 export default function Homepage() {
   return (
-    <div>
+    <>
         <Navbar />
         <LeftSideBar />
         <Feed />
         <RightSideBar />
-    </div>
+    </>
   )
 }

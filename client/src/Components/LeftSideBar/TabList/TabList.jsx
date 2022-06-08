@@ -9,7 +9,7 @@ import {FaStoreAlt} from 'react-icons/fa'
 
 export default function TabList() {
   return (
-    <div className='flex flex-col text-center p-2 mt-2 justify-evenly'>
+    <div className='flex flex-col text-center p-2 mt-4'>
     <TabCard title='Feed' icon={BiCategory} />
     <TabCard title='Friends' icon={GiThreeFriends} />
     <TabCard title="Event" icon={BsFillCalendar2EventFill} />

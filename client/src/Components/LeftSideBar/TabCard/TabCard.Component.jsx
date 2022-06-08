@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function TabCard(props) {
   return (
-    <div className='flex items-center border-2 border-gray-800 p-2 cursor-pointer rounded-lg border-l-2  '>
+    <div className='mt-2 flex items-center border-2 border-gray-800 p-2 cursor-pointer rounded-lg border-l-2  '>
     <props.icon className='text-3xl mr-4 ml-6 ' />
     <h1 className='text-3xl'>{props.title}</h1>
     </div>
