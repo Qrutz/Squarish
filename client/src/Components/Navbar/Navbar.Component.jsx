@@ -5,8 +5,7 @@ import {AiOutlineUsergroupAdd} from 'react-icons/ai';
 
 export default function Navbar() {
   return (
-    // create a navbar with a logo, a search bar, and a friend icon
-    <div className='flex justify-around p-4 border-b-2 border-gray-700 drop-shadow-lg  '>
+    <div className='flex justify-evenly p-4 border-b-2 border-gray-700 drop-shadow-lg  '>
         <div className='flex items-center text-4xl cursor-pointer'>
           <GrSquare />
           <h2 className='ml-2'>SQUARISH</h2>

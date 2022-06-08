@@ -7,9 +7,9 @@ import "../src/index.css";
 
 export default function App() {
   return (
-    <div className='font-mono bg-gray-900 text-gray-100 min-h-screen min-w-full container mx-auto'>
+    <div className='font-mono bg-gray-900 text-gray-100 min-h-screen  '>
         <Navbar />
-        <div className='flex justify-around p-2 '>
+        <div className='flex justify-center p-2 '>
         <LeftSideBar />
         <Feed />
         <RightSideBar />
