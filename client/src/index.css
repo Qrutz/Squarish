@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 
-* {
-  box-sizing: border-box;
-}
+body {
+    @apply dark:bg-gray-900 dark:text-gray-100 bg-gray-100 text-gray-900 antialiased font-sans;
+  }
