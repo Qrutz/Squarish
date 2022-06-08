@@ -17,13 +17,13 @@ export default function PostCard(props) {
             </div>
             
             <div className='ml-3 my-2'> 
-            <p className='text-sm mb-2'>{props.text}</p>
+            <p className='text-3xl mb-2 '>{props.text}</p>
             </div>
           
            
 
-            <div className='flex justify-evenly my-4 mx-3'>
-                <div className='flex'> 
+            <div className='flex justify-evenly my-4 border-b-2 border-gray-800 '>
+                <div className='flex mb-4' > 
                 <GoComment className='text-3xl mr-4 ml-4 ' />
                 <p className='text-sm mb-2'>{props.comments} Comments</p>
                 </div>
@@ -37,13 +37,13 @@ export default function PostCard(props) {
                 </div>
                 <div className='flex'> 
                 <AiOutlineContainer className='text-3xl mr-4 ml-4 ' />
-                <p className='text-sm mb-2'>{props.saved} Saved</p>
+                <p className='text-sm mb-2 mr-4'>{props.saved} Saved</p>
                 </div>
                 </div>
 
           <div className='flex w-full mb-3 items-center '>
             <props.profilePicture className='text-3xl mr-4 ml-4  ' />
-            <CommentBar className="text-gray-200" />
+            <CommentBar />
 
           </div>
 
