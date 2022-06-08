@@ -3,6 +3,7 @@ import {GoComment} from 'react-icons/go'
 import {BsHeartFill} from 'react-icons/bs'
 import {BsFillShareFill} from 'react-icons/bs'
 import {AiOutlineContainer} from 'react-icons/ai'
+import CommentBar from './commentBar'
 
 export default function PostCard(props) {
   return (
@@ -39,6 +40,13 @@ export default function PostCard(props) {
                 <p className='text-sm mb-2'>{props.saved} Saved</p>
                 </div>
                 </div>
+
+          <div className='flex w-full mb-3 items-center '>
+            <props.profilePicture className='text-3xl mr-4 ml-4  ' />
+            <CommentBar className="text-gray-200" />
+
+          </div>
+
         </div>
   )
 }
