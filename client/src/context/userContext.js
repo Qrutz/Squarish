@@ -1,6 +1,6 @@
 import React, { createContext, useState} from 'react';
 import { useEffect } from 'react';
-import getTestUser from '../hooks/requests';
+import {getTestUser} from '../hooks/requests';
 
 
 export const UserContext = createContext({
@@ -12,6 +12,7 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [CurrentUser, setCurrentUser] = useState(null);
     const [Following, setFollowing] = useState([]);
+    
 
 
     useEffect(() => {
