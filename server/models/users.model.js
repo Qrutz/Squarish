@@ -31,5 +31,6 @@ async function saveExampleUser(){
 
 module.exports = {
     saveExampleUser,
-    getAllUsers
+    getAllUsers,
+    saveUser
 }

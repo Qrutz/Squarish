@@ -1,7 +1,10 @@
-const usersRouter = require('express').Router();
-const {httpGetAllUsers} = require('./users.controller');
+const userRouter = require('express').Router();
 
-usersRouter.get('/users', httpGetAllUsers);
+const {AddNewUser, logInUser} = require('./users.controller');
 
 
-module.exports = usersRouter;
+userRouter.post('/register', AddNewUser);
+userRouter.post('/login', logInUser);
+
+
+module.exports = userRouter;
