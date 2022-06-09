@@ -78,10 +78,44 @@ async function httpGetAllUsers(req, res) {
     catch (error) {
         console.log("why why ");
     }
-
-    
-
 }
+async function followUser(req, res) {
+    // username follow id 
+    const { id } = req.params;
+    const { username } = req.body;
+    try {
+
+        
+
+        
+        const userToFollow = await User.findOne({ _id: id });
+        const userThatGetFollowed = await User.findOne({ username }); 
+
+        if (userThatGetFollowed.followers.includes(userToFollow.username) || userToFollow.following.includes(userThatGetFollowed.username)) {
+            return res.status(500).json({
+                message: "User is already following" 
+            })
+        }
+
+        if (!userToFollow) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+}
+        userToFollow.following.push(username);
+        userThatGetFollowed.followers.push(userToFollow.username);
+        await userToFollow.save();
+        await userThatGetFollowed.save();
+        res.status(200).json({
+            message: "User followed successfully"
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 
 
@@ -92,5 +126,6 @@ module.exports = {
     AddNewUser,
     logInUser,
     httpGetUser,
+    followUser,
     httpGetAllUsers
 }

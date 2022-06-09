@@ -1,7 +1,8 @@
 const API_URL = 'http://localhost:5000/api';
 
-async function getUsers() {
-    const response = await fetch(`${API_URL}/users`);
-    const data = await response.json();
-    return data;
+export default async function getTestUser(){
+    const response = await fetch(`${API_URL}/users/Henryy`);
+    const user = await response.json();
+    return user;
 }
+
