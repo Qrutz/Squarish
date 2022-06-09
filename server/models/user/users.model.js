@@ -18,19 +18,16 @@ async function saveUser(user){
     });
 } // saveUser
 
-saveUser(examplseUser);
-
 async function getAllUsers(){
     return await users.find({});
 } // getAllUsers
 
-async function saveExampleUser(){
-     await saveUser(examplseUser);
-} 
+
+
+
 
 
 module.exports = {
-    saveExampleUser,
-    getAllUsers,
-    saveUser
+    saveUser,
+    getAllUsers
 }

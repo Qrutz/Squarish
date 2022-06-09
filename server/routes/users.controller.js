@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const User = require('../models/users.mongo');
-const {saveUser} = require('../models/users.model');
+const User = require('../models/user/users.mongo');
+const {saveUser, getUser} = require('../models/user/users.model');
 const bcrypt = require('bcrypt'); 
+
 
 
 async function AddNewUser(req, res) {
@@ -53,8 +53,44 @@ async function logInUser (req, res)  {
     }
 }
 
+async function httpGetUser(req, res) {
+    const { username } = req.params;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        res.status(200).json(user);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+async function httpGetAllUsers(req, res) {
+    try {
+        const users = await User.find({});
+        res.status(200).json(users);
+    }
+    catch (error) {
+        console.log("why why ");
+    }
+
+    
+
+}
+
+
+
+
+
 
 module.exports = {
     AddNewUser,
-    logInUser
+    logInUser,
+    httpGetUser,
+    httpGetAllUsers
 }
