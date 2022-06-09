@@ -4,7 +4,8 @@ import RightSideBar from './Components/RightSideBarComponent/RightSideBar.Compon
 import LeftSideBar from './Components/LeftSideBar/LeftSideBar.Component';
 import Feed from './Components/Feed/Feed.Component';
 import Navbar from './Components/Navbar/Navbar.Component';
-import "../src/index.css";
+import usePosts from './hooks/usePosts';
+import "../src/index.css"; 
 
 
     
@@ -18,11 +19,12 @@ export default function App() {
 
     const username = CurrentUser ? CurrentUser.username : '';
 
-   
+
+ 
 
   
 
-    
+  
 
 
 

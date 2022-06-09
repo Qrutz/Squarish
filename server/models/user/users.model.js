@@ -32,6 +32,11 @@ async function getAmmountOfFollowing(username){
     return user.following.length;
 } // getAmmountOfFollowing
 
+async function getAllFollowers(username){
+    const user = await users.findOne({username});
+    return user.followers;
+} // getAllFollowers
+
 
 
 
@@ -41,5 +46,6 @@ module.exports = {
     saveUser,
     getAllUsers,
     getAmmountOfFollowing,
-    getAmmountOfFollowers
+    getAmmountOfFollowers,
+    getAllFollowers
 }

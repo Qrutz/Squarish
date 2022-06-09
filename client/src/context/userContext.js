@@ -1,6 +1,7 @@
 import React, { createContext, useState} from 'react';
 import { useEffect } from 'react';
 import {getTestUser} from '../hooks/requests';
+import {getPostsByUser} from '../hooks/requests';
 
 
 export const UserContext = createContext({
@@ -12,6 +13,8 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [CurrentUser, setCurrentUser] = useState(null);
     const [Following, setFollowing] = useState([]);
+    const [posts, setPosts] = useState([]);
+    
     
 
 
@@ -20,6 +23,7 @@ export const UserProvider = ({ children }) => {
             .then(user => {
                 setCurrentUser(user);
                 setFollowing(user.following);
+                setPosts(getPostsByUser(user.username));
             }
             )
             .catch(error => {
@@ -32,7 +36,7 @@ export const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={{ CurrentUser, setCurrentUser, Following }}>
+        <UserContext.Provider value={{ CurrentUser, setCurrentUser, Following, posts }}>
             {children}
         </UserContext.Provider>
     );

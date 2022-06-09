@@ -1,6 +1,7 @@
 const User = require('../models/user/users.mongo');
 const {saveUser, getUser} = require('../models/user/users.model');
 const bcrypt = require('bcrypt'); 
+const {getAllPostsByFollowers} = require('../routes/posts.controller');
 
 
 
@@ -83,11 +84,7 @@ async function followUser(req, res) {
     // username follow id 
     const { id } = req.params;
     const { username } = req.body;
-    try {
-
-        
-
-        
+    try { 
         const userToFollow = await User.findOne({ _id: id });
         const userThatGetFollowed = await User.findOne({ username }); 
 
@@ -115,17 +112,12 @@ async function followUser(req, res) {
     }
 }
 
-
-
-
-
-
-
-
 module.exports = {
     AddNewUser,
     logInUser,
     httpGetUser,
     followUser,
-    httpGetAllUsers
+    httpGetAllUsers,
+
+    
 }

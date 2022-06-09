@@ -1,5 +1,6 @@
 const Post = require("../models/posts/post.mongo");
 const User = require("../models/user/users.mongo");
+const {getAllFollowers} = require('../models/user/users.model');
 
 const {savePost} = require('../models/posts/post.model');
 
@@ -42,8 +43,24 @@ async function getAllPostByUser(req, res) {
         console.log(error);
     }
 }
-
-
+async function userTimeline(req, res) {
+    // get all posts of the followers and the user
+    const { username } = req.params;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            });
+        }
+        const followers = await getAllFollowers(username);
+        const posts = await Post.find({ createdBy: { $in: [username, ...followers] } });
+        res.status(200).json(posts);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
 
 
@@ -51,6 +68,7 @@ async function getAllPostByUser(req, res) {
 
 module.exports = {
     addPost,
-    getAllPostByUser
+    getAllPostByUser,
+    userTimeline
     
 }
