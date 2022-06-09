@@ -24,19 +24,19 @@ export default function PostCard(props) {
 
             <div className='flex justify-evenly my-4 border-b-2 border-gray-800 '>
                 <div className='flex mb-4' > 
-                <GoComment className='text-3xl mr-4 ml-4 ' />
+                <GoComment className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer ' />
                 <p className='text-sm mb-2'>{props.comments} Comments</p>
                 </div>
                 <div className='flex'> 
-                <BsHeartFill className='text-3xl mr-4 ml-4 ' />
+                <BsHeartFill className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer  ' />
                 <p className='text-sm mb-2'>{props.likes} Likes</p>
                 </div>
                 <div className='flex'> 
-                <BsFillShareFill className='text-3xl mr-4 ml-4 ' />
+                <BsFillShareFill className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer ' />
                 <p className='text-sm mb-2'>{props.shares} Share</p>
                 </div>
                 <div className='flex'> 
-                <AiOutlineContainer className='text-3xl mr-4 ml-4 ' />
+                <AiOutlineContainer className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer ' />
                 <p className='text-sm mb-2 mr-4'>{props.saved} Saved</p>
                 </div>
                 </div>

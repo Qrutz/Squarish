@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
 const app = require('./app');
-const {saveExampleUser} = require('./models/users.model');
+const {saveExampleUser, getAllUsers} = require('./models/users.model');
 require('dotenv').config();
 
 
@@ -13,11 +13,13 @@ const server = http.createServer(app)
 
 
 
+
 async function startServer() {
     
         await mongoose.connect(MONGO_URL);
         console.log('Connected to MongoDB');
         await saveExampleUser();
+        await (getAllUsers().then(users => console.log(users)));
         server.listen(5000, () => {
             console.log(`Server is running on port ${5000}`);
         }   

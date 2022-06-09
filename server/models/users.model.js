@@ -7,9 +7,6 @@ const examplseUser = {
     email: "JohnDoe@outlook.com",
     password: "123456",
     friends: ['Henry', 'Jane', 'Bob'],
-    posts: ['post1', 'post2', 'post3'],
-    comments: ['comment1', 'comment2', 'comment3'],
-    likes: ['like1', 'like2', 'like3'],
     createdAt: Date.now() 
 }
 
@@ -34,4 +31,5 @@ async function saveExampleUser(){
 
 module.exports = {
     saveExampleUser,
+    getAllUsers
 }
