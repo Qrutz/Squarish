@@ -33,6 +33,21 @@ function createPost(content, createdBy){
     );
 }   
 
+function LikePost(postId, username){
+    axios.put(`${API_URL}/posts/likePost`, 
+    {   
+        username: username,
+        postId: postId
+       
+    }
+    ).then(response => {
+        console.log(response);
+    }
+    ).catch(error => {
+        console.log(error);
+    }
+    );
+}
     
 
 
@@ -42,7 +57,8 @@ export {
     getTestUser,
     getPostsByUser,
     getTimeLine,
-    createPost
+    createPost,
+    LikePost
     
 };
 

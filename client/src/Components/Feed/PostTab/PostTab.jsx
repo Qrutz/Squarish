@@ -2,20 +2,20 @@ import React from 'react'
 import {VscSmiley} from 'react-icons/vsc'
 import {FaImage} from 'react-icons/fa';
 import {FaRegUser} from 'react-icons/fa';
-import { GiDoorHandle } from 'react-icons/gi';
+
 import {createPost} from '../../../hooks/requests';
 
 
 export default function PostTab() {
    const [search, setSearch] = React.useState('');
-   const [rerender, setRerender] = React.useState(false);
+  
    
   function HandleSubmit(e) {
     e.preventDefault();
     const val = search;
     try {
       createPost(val, "Henryy");
-      setRerender(!rerender);
+    
     }
     catch(err) {
       console.log(err);

@@ -64,6 +64,36 @@ async function userTimeline(req, res) {
     }
 }
 
+async function likePost(req, res) {
+    const { username, postId } = req.body;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            });
+        }
+        const post = await Post.findOne({ _id: postId });
+        if (!post) {
+            return res.status(401).json({
+                message: "Post not found"
+            });
+        }
+        post.likes += 1;
+        await post.save();
+        res.status(200).json({
+            message: "Post liked successfully"
+        });
+
+
+        
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 
 
@@ -71,6 +101,7 @@ async function userTimeline(req, res) {
 module.exports = {
     addPost,
     getAllPostByUser,
-    userTimeline
+    userTimeline,
+    likePost,
     
 }
