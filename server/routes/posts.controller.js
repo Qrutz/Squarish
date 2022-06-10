@@ -83,15 +83,42 @@ async function likePost(req, res) {
         await post.save();
         res.status(200).json({
             message: "Post liked successfully"
-        });
-
-
-        
+        });   
     }
     catch (error) {
         console.log(error);
     }
 }
+async function deletePost(req, res) {
+    const { postId, username } = req.body;
+    try {
+        //check if the user is the owner of the post and then delete it if true
+        const post = await Post.findOne({ _id: postId });
+        if (!post) {
+            return res.status(401).json({
+                message: "Post not found"
+            });
+        }
+        if (post.createdBy !== username) {
+            return res.status(401).json({
+                message: "You are not the owner of this post"
+            });
+        }
+        await Post.deleteOne({ _id: postId });
+        res.status(200).json({
+            message: "Post deleted successfully"
+        });
+}
+    catch (error) {
+        console.log(error);
+    }
+}
+
+        
+
+
+
+
 
 
 
@@ -103,5 +130,6 @@ module.exports = {
     getAllPostByUser,
     userTimeline,
     likePost,
+    deletePost
     
 }

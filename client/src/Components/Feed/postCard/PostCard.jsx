@@ -6,6 +6,7 @@ import {AiOutlineContainer} from 'react-icons/ai'
 import CommentBar from './commentBar'
 import {LikePost} from '../../../hooks/requests'
 import {UserContext} from '../../../context/userContext'
+import {GiHamburgerMenu} from 'react-icons/gi'
 
 export default function PostCard(props) {
     const [likes, setLikes] = React.useState(props.likes);
@@ -38,6 +39,9 @@ export default function PostCard(props) {
             <div className='flex flex-col text-lg leading-relaxed'>
             <h1 className='font-bold text-2xl mr-5 mt-2'>{props.name}</h1>
             <p className='text-sm mb-2'>{props.date}</p>
+            </div>
+            <div className='ml-60'>
+            <GiHamburgerMenu className='text-gray-500 text-lg mr-4  cursor-pointer' />
             </div>
             </div>
             

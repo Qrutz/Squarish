@@ -1,32 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {VscSmiley} from 'react-icons/vsc'
 import {FaImage} from 'react-icons/fa';
 import {FaRegUser} from 'react-icons/fa';
+import { SearchContext } from '../../../context/searchContext';
 
-import {createPost} from '../../../hooks/requests';
 
 
-export default function PostTab() {
-   const [search, setSearch] = React.useState('');
+export default function PostTab(props) {
+   const {Search, setSearch} = useContext(SearchContext);
   
    
-  function HandleSubmit(e) {
-    e.preventDefault();
-    const val = search;
-    try {
-      createPost(val, "Henryy");
-    
-    }
-    catch(err) {
-      console.log(err);
-    }
-    setSearch('');
-  }
+ 
    
 
 
   return (
-    <form onSubmit={HandleSubmit} method="POST"> 
+    <form onSubmit={props.handleSubmit} method="POST"> 
     <div className='flex flex-col border-2 border-gray-700 rounded-md p-2'>
         <div className='border-b-2 border-gray-700'> 
         <h2 className='mb-2 ml-2 font-semibold text-xl'>Post something</h2>
@@ -38,8 +27,8 @@ export default function PostTab() {
         
   
     <input
-      className="bg-transparent w-96 focus:outline-none px-4 py-2 text-gray-100 "
-      placeholder="What's on your mind?" type="text" value={search}  onChange={(e) => setSearch(e.target.value)}
+      className="resize bg-transparent w-96 focus:outline-none px-4 py-2 text-gray-100 "
+      placeholder="What's on your mind?" type="text" value={Search}  onChange={(e) => setSearch(e.target.value)}
     />
     <VscSmiley className="text-gray-100  mr-4 hover:text-3xl cursor-pointer" />
     <FaImage className="text-gray-100  mr-4 hover:text-3xl cursor-pointer" />

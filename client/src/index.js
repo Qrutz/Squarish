@@ -4,12 +4,15 @@ import "./index.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './context/userContext';
+import { SearchProvider } from './context/searchContext'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <UserProvider>
+      <SearchProvider>
     <App />
+      </SearchProvider>
     </UserProvider>
   </React.StrictMode>
 );
