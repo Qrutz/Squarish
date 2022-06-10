@@ -5,7 +5,8 @@ import LeftSideBar from './Components/LeftSideBar/LeftSideBar.Component';
 import Feed from './Components/Feed/Feed.Component';
 import Navbar from './Components/Navbar/Navbar.Component';
 import usePosts from './hooks/usePosts';
-import "../src/index.css"; 
+import "../src/index.css";
+
 
 
     
@@ -18,6 +19,8 @@ export default function App() {
     const name = CurrentUser ? CurrentUser.name : '';
 
     const username = CurrentUser ? CurrentUser.username : '';
+
+    
 
 
  

@@ -4,6 +4,8 @@ const {getAllFollowers} = require('../models/user/users.model');
 
 const {savePost} = require('../models/posts/post.model');
 
+
+//create a post
 async function addPost(req, res) {
     const { content, createdBy } = req.body;
     try {

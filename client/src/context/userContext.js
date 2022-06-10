@@ -13,7 +13,7 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [CurrentUser, setCurrentUser] = useState(null);
     const [Following, setFollowing] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [timeLine, setTimeLine] = useState([]);
     
     
 
@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
             .then(user => {
                 setCurrentUser(user);
                 setFollowing(user.following);
-                setPosts(getPostsByUser(user.username));
             }
             )
             .catch(error => {
@@ -36,7 +35,7 @@ export const UserProvider = ({ children }) => {
 
 
     return (
-        <UserContext.Provider value={{ CurrentUser, setCurrentUser, Following, posts }}>
+        <UserContext.Provider value={{ CurrentUser, setCurrentUser, Following }}>
             {children}
         </UserContext.Provider>
     );
