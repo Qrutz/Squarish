@@ -19,17 +19,15 @@ export default function App() {
    
  
   return (
-    <div className="bg-gray-900">
-    <div className='container mx-auto font-mono bg-gray-900 text-gray-100 min-h-screen '>
+
+    <div className='font-mono bg-gray-900 text-gray-100 min-h-screen '>
         <Routes>
             <Route path="/" element={<Navbar />}>
               <Route index element={<Homepage />} />
               <Route path="/Profile" element={<ProfilePage />} />
             </Route>  
-            {/* </Route> */}
-       
         </Routes>
         </div>
-    </div>
+    
   )
 }

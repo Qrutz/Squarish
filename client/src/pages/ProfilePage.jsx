@@ -19,13 +19,13 @@ export default function ProfilePage() {
   
 
   return (
-    <div className='flex'>
+    <div className='flex justify-center'>
         <LeftSideBar name={name} username={username}/>
       
-           <div className='rounded-lg flex flex-col p-4 w-3/6  mt-3 border-2 border-gray-700'> 
+           <div className='rounded-lg flex flex-col p-4 md:w-3/6 w-full  mt-3 border-2 border-gray-700'> 
            <div className='flex justify-between'>
               <img className=' w-28 rounded-full' src={profilePicToString} alt="aa" />
-              <button className='mt-4 mr-6 w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
+              <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
            </div>
            <h2 className='text-2xl mt-5'>{name}</h2>
            <p className=' text-slate-400'>@{username}</p>

@@ -44,7 +44,7 @@ export default function Feed() {
 
 
   return (
-    <div className='flex flex-col mt-2'>
+    <div className='flex flex-col mt-2  md:w-[34rem] '>
        
         <PostTab handleSubmit={HandleSubmit} />
         {postArrCopy.map(post => 

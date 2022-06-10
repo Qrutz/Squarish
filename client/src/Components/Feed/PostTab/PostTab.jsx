@@ -23,15 +23,15 @@ export default function PostTab(props) {
         <div className='flex items-center'> 
         <FaRegUser className='text-3xl mx-2  ' />
 
-        <div className="mt-2 rounded-full bg-gray-800  flex items-center border border-transparent transition focus-within:border-blue-400 focus-within:text-blue-400 text-gray-500">
+        <div className="w-full mt-2 rounded-full bg-gray-800  flex items-center border border-transparent transition focus-within:border-blue-400 focus-within:text-blue-400 text-gray-500">
         
   
     <input
-      className="resize bg-transparent w-96 focus:outline-none px-4 py-2 text-gray-100 "
+      className="bg-transparent md:w-96 focus:outline-none px-4 py-2 text-gray-100 "
       placeholder="What's on your mind?" type="text" value={Search}  onChange={(e) => setSearch(e.target.value)}
     />
-    <VscSmiley className="text-gray-100  mr-4 hover:text-3xl cursor-pointer" />
-    <FaImage className="text-gray-100  mr-4 hover:text-3xl cursor-pointer" />
+    <VscSmiley className="hidden md:block text-gray-100  mr-4 hover:text-3xl cursor-pointer" />
+    <FaImage className="hidden md:block text-gray-100  mr-4 hover:text-3xl cursor-pointer" />
 
     
   </div>

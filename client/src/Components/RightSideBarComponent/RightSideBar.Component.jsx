@@ -9,7 +9,7 @@ export default function RightSideBar() {
   
 
   return (
-    <div className='flex flex-col ml-4 text-center mt-4'>
+    <div className='md:flex flex-col ml-4 text-center mt-4 hidden'>
       <h2 className='text-3xl leading-9'>Following</h2>
       {/* <FriendCard profilePicture={FaRegUser} name={Following[0]} />
       <FriendCard profilePicture={FaRegUser} name="Name Lastname" />

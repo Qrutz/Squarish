@@ -33,45 +33,47 @@ export default function PostCard(props) {
 
 
   return (
-    <div className='flex flex-col border-2 border-gray-700 rounded-lg mt-4'>
-         <div className='flex items-center'> 
-         <props.profilePicture className='text-3xl mr-4 ml-4 ' />
+    <div className='flex flex-col border-2 border-gray-700 rounded-lg mt-4  '>
+         <div className='flex items-center '> 
+         <props.profilePicture className='md:text-3xl mr-4 ml-4  ' />
             <div className='flex flex-col text-lg leading-relaxed'>
             <h1 className='font-bold text-2xl mr-5 mt-2'>{props.name}</h1>
             <p className='text-sm mb-2'>{props.date}</p>
             </div>
-            <div className='ml-60'>
-            <GiHamburgerMenu className='text-gray-500 text-lg mr-4  cursor-pointer' />
+            <div className='ml-60 inline-block md:block '>
+            <GiHamburgerMenu className='text-gray-500 text-lg mr-4  cursor-pointer ' />
             </div>
             </div>
             
-            <div className='ml-3 my-2'> 
-            <p className='text-3xl mb-2 '>{props.text}</p>
+            <div className='ml-3 my-2 '> 
+            <p className='text-lg md:text-3xl mb-2 inline-block'>{props.text}</p>
             </div>
           
            
 
-            <div className='flex justify-evenly my-4 border-b-2 border-gray-800 '>
-                <div className='flex mb-4' > 
-                <GoComment className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer ' />
-                <p className='text-sm mb-2'>{props.comments} Comments</p>
+            <div className='justify-evenly my-4 border-b-2 border-gray-800 inline-block  md:flex text-xs md:text  '>
+             
+                <div className='flex md:mb-4' > 
+                <GoComment className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer ' />
+                <p className='-sm mb-2'>{props.comments} Comments</p>
                 </div>
                 <div className='flex'> 
-                <BsHeartFill className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer  '   onClick={handleLike} />
-                <p className='text-sm mb-2'>{likes} Likes</p>
+                <BsHeartFill className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer  '   onClick={handleLike} />
+                <p className=' mb-2'>{likes} Likes</p>
                 </div>
                 <div className='flex'> 
-                <BsFillShareFill className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer '/>
-                <p className='text-sm mb-2'>{props.shares} Share</p>
+                <BsFillShareFill className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer '/>
+                <p className=' mb-2'>{props.shares} Share</p>
                 </div>
-                <div className='flex'> 
-                <AiOutlineContainer className='text-3xl mr-4 ml-4 hover:text-4xl cursor-pointer ' />
-                <p className='text-sm mb-2 mr-4'>{props.saved} Saved</p>
+                <div className='flex mb-2'> 
+                <AiOutlineContainer className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer ' />
+                <p className=' mb-2 mr-4'>{props.saved} Saved</p>
                 </div>
                 </div>
+              
 
-          <div className='flex w-full mb-3 items-center '>
-            <props.profilePicture className='text-3xl mr-4 ml-4  ' />
+          <div className='md:flex w-full mb-3 items-center inline-block '>
+            <props.profilePicture className='hidden md:block md:text-3xl mr-4 ml-4  ' />
             <CommentBar />
 
           </div>

@@ -8,7 +8,7 @@ import {Outlet} from 'react-router-dom'
 export default function LeftSideBar(props) {
   return (
     <Fragment>
-    <div className='flex flex-col p-4 mt-2'>
+    <div className='md:flex flex-col p-4 mt-2 hidden'>
         <UserCard name={props.name} username={props.username} profilePicture={FaRegUser }  />
         <TabList />
     </div>
