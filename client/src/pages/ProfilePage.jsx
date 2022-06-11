@@ -5,6 +5,7 @@ import PostCard from '../Components/Feed/postCard/PostCard';
 import axios from 'axios';
 import { useEffect } from 'react';
 import {FaRegUser} from 'react-icons/fa';
+import Navbar from '../Components/Navbar/Navbar.Component';
 
 
 export default function ProfilePage() {
@@ -59,6 +60,8 @@ export default function ProfilePage() {
             
   
   return (
+      <div>
+         <Navbar />
     <div className='flex justify-center '>
          { <LeftSideBar name={user.name} username={user.username}/>}
       
@@ -96,6 +99,7 @@ export default function ProfilePage() {
            
 
         </div>
+      </div>
         
     
   )
