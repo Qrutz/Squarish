@@ -5,13 +5,13 @@ import {getPostsByUser} from '../hooks/requests';
 
 
 export const UserContext = createContext({
-    CurrentUser: null,
-    setCurrentUser: () => [],
+    CurrentUser: {},
+    setCurrentUser: () => {},
 });
 
 
 export const UserProvider = ({ children }) => {
-    const [CurrentUser, setCurrentUser] = useState(null);
+    const [CurrentUser, setCurrentUser] = useState({});
     const [Following, setFollowing] = useState([]);
     const [timeLine, setTimeLine] = useState([]);
     

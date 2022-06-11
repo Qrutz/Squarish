@@ -31,7 +31,10 @@ function createPost(content, createdBy){
         console.log(error);
     }
     );
-}   
+}
+
+
+
 
 function LikePost(postId, username){
     axios.put(`${API_URL}/posts/likePost`, 

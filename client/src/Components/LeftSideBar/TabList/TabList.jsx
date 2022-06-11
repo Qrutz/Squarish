@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {UserContext} from '../../../context/userContext'
 import {BiCategory} from 'react-icons/bi'
 import TabCard from "../TabCard/TabCard.Component";
 import {GiThreeFriends} from 'react-icons/gi'
@@ -9,13 +10,16 @@ import {FaStoreAlt} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 
 export default function TabList() {
+    const userContext = useContext(UserContext);
+    const { CurrentUser } = userContext;
+
   return (
     <div className='flex flex-col text-center p-2 mt-4'>
     <Link to="/"><TabCard title='Feed' icon={BiCategory} /></Link>
     <TabCard title='Friends' icon={GiThreeFriends} />
     <TabCard title="Event" icon={BsFillCalendar2EventFill} />
     <TabCard title="Marketplace" icon={FaStoreAlt} />
-    <Link to='/profile'><TabCard title="Profile" icon={FaRegUser} /></Link>
+    <Link to={`/profile/${CurrentUser.username}`}><TabCard title="Profile" icon={FaRegUser} /></Link>
     <TabCard title="Settings" icon={FiSettings} />
 
 

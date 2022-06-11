@@ -33,7 +33,7 @@ export default function PostCard(props) {
 
 
   return (
-    <div className='flex flex-col border-2 border-gray-700 rounded-lg mt-4  '>
+    <div className={`flex flex-col border-2 border-gray-700 rounded-lg mt-4  `}>
          <div className='flex items-center '> 
          <props.profilePicture className='md:text-3xl mr-4 ml-4  ' />
             <div className='flex flex-col text-lg leading-relaxed'>

@@ -24,7 +24,7 @@ export default function App() {
         <Routes>
             <Route path="/" element={<Navbar />}>
               <Route index element={<Homepage />} />
-              <Route path="/Profile" element={<ProfilePage />} />
+              <Route path="/Profile/:username" element={<ProfilePage />} />
             </Route>  
         </Routes>
         </div>
