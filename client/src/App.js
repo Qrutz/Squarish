@@ -14,28 +14,11 @@ import { useEffect } from 'react';
 export default function App() {
   const userContext = useContext(UserContext);
 
-  const { CurrentUser  } = userContext;
+  const { CurrentUser, setCurrentUser  } = userContext;
+
 
  
-  function routes(){
-    const loggedIn = CurrentUser;
-    if(loggedIn){
-      return(
-      <> 
-          <Route index element={<Homepage />} />
-          <Route path="/Profile/:username" element={<ProfilePage />} />
-          </>
-        
-      )
-    }
-    else{
-      return(
-        
-        <Navigate to="/Login" /> 
-        
-      )
-    }
-  }
+  
    
  
   return (
@@ -47,6 +30,7 @@ export default function App() {
                <Route index element={<Homepage />} />
               <Route path="/Profile/:username" element={<ProfilePage />} />
               <Route path="/Login" element={<LoginPage />} />   
+              
              
               
              

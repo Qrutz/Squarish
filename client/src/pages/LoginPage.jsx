@@ -17,6 +17,7 @@ export default function LoginPage() {
                 console.log("success");
                 const user = await axios.get(`http://localhost:5000/api/users/${username}`);
                 setCurrentUser(user.data);
+                window.location.href = '/';
             }
             
         }
@@ -27,7 +28,6 @@ export default function LoginPage() {
 
         
     }
-        
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function LoginPage() {
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button className=' bg-red-500' type="submit">Log in</button>
             </div>
-        </form>
+        </form> 
     </div>
   )
 }
