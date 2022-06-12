@@ -64,6 +64,8 @@ async function logInUser (req, res)  {
     }
 }
 
+ 
+
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -76,6 +78,34 @@ function authenticateToken(req, res, next) {
     });
 }
 
+//create function that edits user bio
+async function editUserBio(req, res) {
+    const {username, bio} = req.body;
+    if (username !== req.user.username) {
+        return res.status(401).json({
+            message: "You are not authorized to edit this user"
+        });
+    }
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            });
+        }
+        user.bio = bio;
+        await saveUser(user);
+        res.status(200).json({
+            message: "User bio edited successfully"
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
+   
 
 
 async function httpGetUser(req, res) {
@@ -147,5 +177,6 @@ module.exports = {
     followUser,
     httpGetAllUsers,
     authenticateToken,
+    editUserBio
     
 }

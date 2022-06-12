@@ -30,7 +30,7 @@ export default function Homepage() {
     <div className='font-mono bg-gray-900 text-gray-100 min-h-screen '>
       <Navbar />
     <div className='flex justify-center p-2 '>
-      <LeftSideBar name={name} username={username} />
+      <LeftSideBar name={name} username={username} profilePicture={CurrentUser.profilePicture} />
         <Feed />
         {/* <RightSideBar /> */}
     </div>

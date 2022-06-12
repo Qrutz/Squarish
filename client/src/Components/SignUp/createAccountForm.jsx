@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export default function CreateAccountForm() {
     const [name, setName] = useState('')
@@ -7,9 +8,33 @@ export default function CreateAccountForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault()
-      console.log(name, email, username, password)
+      await axios.post('http://localhost:5000/api/users/register', {
+        name: name,
+        email: email,
+        username: username,
+        password: password
+      })
+      .then(res => {
+          axios.post('http://localhost:5000/api/users/login', {
+          username: username,
+          password: password
+          })
+          .then(res => {
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('username', username)
+            window.location.href = '/'
+          }
+          )
+
+        
+      }
+      )
+      .catch(err => {
+        console.log(err)
+      }
+      )
     }
 
 
@@ -21,7 +46,7 @@ export default function CreateAccountForm() {
 
       <form onSubmit={handleSubmit}>
       <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
-        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="name" required/>
+        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100' value={name} onChange={(e) => setName(e.target.value)}  type="text" placeholder="name" required/>
         </div>
         <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
         <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 'value={email} onChange={(e) => setEmail(e.target.value)} type="email"  placeholder="email" required/>

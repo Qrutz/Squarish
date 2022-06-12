@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import {FaRegUser} from 'react-icons/fa';
 import Navbar from '../Components/Navbar/Navbar.Component';
+import ProfileCard from '../Components/ProfileCard/ProfileCard';
 
 
 export default function ProfilePage() {
@@ -57,19 +58,11 @@ export default function ProfilePage() {
    <div className='font-mono bg-gray-900 text-gray-100 min-h-screen '>
          <Navbar />
     <div className='flex justify-center '>
-         { <LeftSideBar name={CurrentUser.name} username={CurrentUser.username}/>}
+         { <LeftSideBar name={CurrentUser.name} username={CurrentUser.username} profilePicture={CurrentUser.profilePicture}/>}
       
            <div className='rounded-lg flex flex-col p-4 mt-3 border-2 border-gray-700 '> 
-           <div className='flex justify-between'>
-              <img className=' w-28 rounded-full' src={CurrentUser.profilePicture} alt="aa" />
-              <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
-           </div>
-           <h2 className='text-2xl mt-5'>{CurrentUser.name}</h2>
-           <p className=' text-slate-400'>@{CurrentUser.name}</p>
-              <p className='my-5 text-lg'>{CurrentUser.bio}</p>
-           <div className='flex'>
-                <p> </p> 
-                <p className='ml-5'> followers </p>
+           <div>
+            <ProfileCard />
            </div>
            
             <div className='flex justify-around mt-6 text-lg'>
@@ -81,8 +74,10 @@ export default function ProfilePage() {
             <div className='border-t-2 border-gray-700 mt-3'>
                 
             </div>
+            <div> 
 
             {renderPosts()}
+            </div>
       
 
 

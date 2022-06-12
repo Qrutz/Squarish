@@ -114,15 +114,6 @@ async function deletePost(req, res) {
 
         
 
-
-
-
-
-
-
-
-
-
 module.exports = {
     addPost,
     getAllPostByUser,
