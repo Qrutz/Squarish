@@ -21,22 +21,16 @@ export default function ProfilePage() {
    const [user, setUser] = useState({});
    const [posts, setPosts] = useState({});
 
-    useEffect(() => {
-      if (CurrentUser.username !== undefined) {
-         const fetchUser = async () => {
-            
-               const res = await axios.get(`http://localhost:5000/api/users/${CurrentUser.username}`);
-               setUser(res.data);
-        }
-         
-         fetchUser();
-      }
-      }, [CurrentUser.username]);
+   const config = {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+  }
+
+
 
       useEffect(() => {
          if (CurrentUser.username !== undefined) {
             const fetchPosts = async () => {
-               const res = await axios.get(`http://localhost:5000/api/posts/getAllPostByUser/${CurrentUser.username}`);
+               const res = await axios.get(`http://localhost:5000/api/posts/getAllPostByUser`, config);
                setPosts(res.data);
             }
             fetchPosts();
@@ -63,16 +57,16 @@ export default function ProfilePage() {
       <div>
          <Navbar />
     <div className='flex justify-center '>
-         { <LeftSideBar name={user.name} username={user.username}/>}
+         { <LeftSideBar name={CurrentUser.name} username={CurrentUser.username}/>}
       
            <div className='rounded-lg flex flex-col p-4 mt-3 border-2 border-gray-700 '> 
            <div className='flex justify-between'>
-              <img className=' w-28 rounded-full' src={user.profilePicture} alt="aa" />
+              <img className=' w-28 rounded-full' src={CurrentUser.profilePicture} alt="aa" />
               <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
            </div>
-           <h2 className='text-2xl mt-5'>{user.name}</h2>
-           <p className=' text-slate-400'>@{user.name}</p>
-              <p className='my-5 text-lg'>{user.bio}</p>
+           <h2 className='text-2xl mt-5'>{CurrentUser.name}</h2>
+           <p className=' text-slate-400'>@{CurrentUser.name}</p>
+              <p className='my-5 text-lg'>{CurrentUser.bio}</p>
            <div className='flex'>
                 <p> </p> 
                 <p className='ml-5'> followers </p>
@@ -89,7 +83,7 @@ export default function ProfilePage() {
             </div>
 
             {renderPosts()}
-         {console.log(posts[0])}
+      
 
 
 

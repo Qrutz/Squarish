@@ -2,6 +2,7 @@ const User = require('../models/user/users.mongo');
 const {saveUser, getUser} = require('../models/user/users.model');
 const bcrypt = require('bcrypt'); 
 const {getAllPostsByFollowers} = require('../routes/posts.controller');
+const jwt = require('jsonwebtoken');
 
 
 
@@ -45,8 +46,17 @@ async function logInUser (req, res)  {
                 error: "Invalid password"
             });
         }
+        const token = jwt.sign({
+            username: user.username,
+        }, "secret", {
+            expiresIn: "1h"
+        });
+
+
+
         res.status(200).json({
-            message: "User logged in successfully"
+            message: "User logged in successfully",
+            token: token // token is the key to access the user data
         });
     }
     catch (error) {
@@ -54,8 +64,25 @@ async function logInUser (req, res)  {
     }
 }
 
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401);
+    jwt.verify(token, 'secret', (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        console.log("middleware user", req.user);
+        next();
+    });
+}
+
+
+
 async function httpGetUser(req, res) {
     const { username } = req.params;
+    if (username !== req.user.username) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
     try {
         const user = await User.findOne({ username });
         if (!user) {
@@ -69,6 +96,7 @@ async function httpGetUser(req, res) {
         console.log(error);
     }
 }
+
 
 
 async function httpGetAllUsers(req, res) {
@@ -118,6 +146,6 @@ module.exports = {
     httpGetUser,
     followUser,
     httpGetAllUsers,
-
+    authenticateToken,
     
 }

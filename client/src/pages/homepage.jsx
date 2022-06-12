@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import RightSideBar from '../Components/RightSideBarComponent/RightSideBar.Component';
 import LeftSideBar from '../Components/LeftSideBar/LeftSideBar.Component';
 import Feed from '../Components/Feed/Feed.Component';
@@ -16,6 +16,15 @@ export default function Homepage() {
 
   const username = CurrentUser ? CurrentUser.username : '';
 
+  useEffect(() => {
+
+  
+      console.log(CurrentUser);
+    
+  }
+  , [CurrentUser]);
+    
+
 
   return (
     <div>
@@ -23,7 +32,7 @@ export default function Homepage() {
     <div className='flex justify-center p-2 '>
       <LeftSideBar name={name} username={username} />
         <Feed />
-        <RightSideBar />
+        {/* <RightSideBar /> */}
     </div>
     </div>
   )

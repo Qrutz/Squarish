@@ -1,7 +1,7 @@
 import React, { createContext, useState} from 'react';
 import { useEffect } from 'react';
-import {getTestUser} from '../hooks/requests';
 import {getPostsByUser} from '../hooks/requests';
+import axios from 'axios';
 
 
 export const UserContext = createContext({
@@ -12,30 +12,38 @@ export const UserContext = createContext({
 
 export const UserProvider = ({ children }) => {
     const [CurrentUser, setCurrentUser] = useState({});
-    const [Following, setFollowing] = useState([]);
     const [timeLine, setTimeLine] = useState([]);
     
     
 
+    const config = {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    }
 
     useEffect(() => {
-        getTestUser()
-            .then(user => {
-                setCurrentUser(user);
-                setFollowing(user.following);
-            }
-            )
-            .catch(error => {
-                console.log(error);
-            }
-            );
-    }
-    , []);
+        if (localStorage.getItem('token')) {
+        axios.get(`http://localhost:5000/api/users/${localStorage.getItem('username')}`, config)
+        .then(res => {
+            setCurrentUser(res.data);
+        }
+        ).catch(err => {
+            console.log(err);
+        }
+        );
+        }
+    }, []);
+            
+    
+  
+
+
+    
+ 
 
 
 
     return (
-        <UserContext.Provider value={{ CurrentUser, setCurrentUser, Following }}>
+        <UserContext.Provider value={{ CurrentUser, setCurrentUser }}>
             {children}
         </UserContext.Provider>
     );

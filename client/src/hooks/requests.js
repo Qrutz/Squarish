@@ -14,7 +14,7 @@ async function getPostsByUser(username){
     return posts;
 }
 async function getTimeLine(){
-    const response = await fetch(`${API_URL}/posts/userTimeline/Henryy`);
+    const response = await fetch(`${API_URL}/posts//Henryy`);
     const posts = await response.json();
     return posts;
 }

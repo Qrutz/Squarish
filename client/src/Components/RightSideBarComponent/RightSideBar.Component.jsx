@@ -1,10 +1,22 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import FriendCard from './FriendCard/FriendCard';
 import {FaRegUser} from 'react-icons/fa';
 import { UserContext } from '../../context/userContext';
 
 export default function RightSideBar() {
-  const {Following} = useContext(UserContext);
+  const {CurrentUser} = useContext(UserContext);
+  const [friends, setFriends] = React.useState([]);
+  const [friendArrCopy, setFriendArrCopy] = React.useState(friends);
+
+
+
+  useEffect(() => {
+    setFriendArrCopy(CurrentUser.friends);
+
+
+
+  }
+  , [friends]);
 
   
 
@@ -18,8 +30,8 @@ export default function RightSideBar() {
       <FriendCard profilePicture={FaRegUser} name="Name Lastname" />
       <FriendCard profilePicture={FaRegUser} name="Name Lastname" /> */}
       
-        <FriendCard  profilePicture={FaRegUser} name={Following[0]} />
-        <FriendCard  profilePicture={FaRegUser} name={Following[1]} />
+        <FriendCard  profilePicture={FaRegUser} name={"s"}/>
+        <FriendCard  profilePicture={FaRegUser}  />
 
     </div>
   )

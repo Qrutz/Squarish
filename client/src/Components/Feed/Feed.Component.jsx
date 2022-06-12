@@ -5,6 +5,7 @@ import PostTab from './PostTab/PostTab'
 import { getTimeLine } from '../../hooks/requests';
 import {createPost} from '../../hooks/requests';
 import { SearchContext } from '../../context/searchContext';
+import axios from 'axios';
 
 
 export default function Feed() {
@@ -13,23 +14,35 @@ export default function Feed() {
   const [postArrCopy, setPostArrCopy] = React.useState(posts);
   
     
-  
+  const config = {
+    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+}
    
     
     useEffect(()  =>  {
        
-         getTimeLine().then(res => {
-          setPostArrCopy(res)
-        })
-    }, [posts])
+        axios.get(`http://localhost:5000/api/posts/userTimeline/`, config)
+        .then(res => {
+            setPostArrCopy(res.data);
+
+        }
+        )
+        .catch(err => {
+            console.log(err);
+        }
+        )
+    }, [posts]);
+
+
 
 
     function HandleSubmit(e) {
       e.preventDefault();
       const val = Search;
       try {
-         createPost(val, "Henryy");
-        console.log(val);
+        axios.post(`http://localhost:5000/api/posts/addPost/`,{
+          content: val
+        }, config)
         setPosts([...posts, val])
       
       }

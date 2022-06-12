@@ -16,8 +16,9 @@ export default function LoginPage() {
             const res = await axios.post('http://localhost:5000/api/users/login', {username, password});
             if (res.statusText === 'OK') {
                 console.log("success");
-                const user = await axios.get(`http://localhost:5000/api/users/${username}`);
-                setCurrentUser(user.data);
+                // put token in local storage
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('username', username);
                 window.location.href = '/';
             }
             

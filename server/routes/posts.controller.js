@@ -7,18 +7,15 @@ const {savePost} = require('../models/posts/post.model');
 
 //create a post
 async function addPost(req, res) {
-    const { content, createdBy } = req.body;
+    const { content } = req.body;
+    const createdBy = req.user.username;
+
+
     try {
         const post = new Post({
             content,
             createdBy, 
         });
-        const user = await User.findOne({ username: createdBy });
-        if (!user) {
-            return res.status(401).json({
-                message: "Cant create post with user that doesnt exist !" // user not found
-            });
-        }
         await post.save();
         res.status(201).json({
             message: "Post created successfully"
@@ -30,7 +27,7 @@ async function addPost(req, res) {
 }
 
 async function getAllPostByUser(req, res) {
-    const { username } = req.params;
+    const username  = req.user.username;
     try {
         const user = await User.findOne({ username });
         if (!user) {
@@ -47,7 +44,7 @@ async function getAllPostByUser(req, res) {
 }
 async function userTimeline(req, res) {
     // get all posts of the followers and the user
-    const { username } = req.params;
+    const username = req.user.username;
     try {
         const user = await User.findOne({ username });
         if (!user) {
@@ -90,7 +87,8 @@ async function likePost(req, res) {
     }
 }
 async function deletePost(req, res) {
-    const { postId, username } = req.body;
+    const { postId } = req.body;
+    const username = req.user.username;
     try {
         //check if the user is the owner of the post and then delete it if true
         const post = await Post.findOne({ _id: postId });
