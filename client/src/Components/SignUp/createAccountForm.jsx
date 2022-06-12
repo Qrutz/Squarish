@@ -2,7 +2,16 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
 export default function CreateAccountForm() {
-    const [formData, setformData] = useState({ name: '', username: '', password: '', email: '' });
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    function handleSubmit(e) {
+      e.preventDefault()
+      console.log(name, email, username, password)
+    }
+
 
 
   return (
@@ -10,18 +19,18 @@ export default function CreateAccountForm() {
       <h2 className='text-3xl mb-2'>Create your account</h2>
       <p className=' opacity-70'>Lorem ipsum dolor si</p>
 
-      <form onSubmit={() => console.log("Submitted")}>
+      <form onSubmit={handleSubmit}>
       <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
-        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100' value={formData.name}  type="text" placeholder="name" />
+        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100' value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="name" required/>
         </div>
         <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
-        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 ' value={formData.email} type="text" placeholder="email" />
+        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 'value={email} onChange={(e) => setEmail(e.target.value)} type="email"  placeholder="email" required/>
         </div>
         <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
-        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 ' value={formData.username} type="text" placeholder="username" />
+        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 'value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" required/>
         </div>
         <div className='hidden md:flex rounded-full bg-gray-800 mt-4  items-center border border-transparent transition   text-gray-500'>
-        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 ' value={formData.password} type="text" placeholder="Password" />
+        <input className='border-2 border-gray-700 rounded-lg bg-transparent w-full focus:outline-none px-4 py-2 text-gray-100 'value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" requried/>
         </div>
         <div className='flex items-center space-x-2 mt-4'>
           <input className=' text-3xl' type="checkbox"  required/>
