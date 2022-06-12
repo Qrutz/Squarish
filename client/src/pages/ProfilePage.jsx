@@ -54,7 +54,7 @@ export default function ProfilePage() {
             
   
   return (
-      <div>
+   <div className='font-mono bg-gray-900 text-gray-100 min-h-screen '>
          <Navbar />
     <div className='flex justify-center '>
          { <LeftSideBar name={CurrentUser.name} username={CurrentUser.username}/>}

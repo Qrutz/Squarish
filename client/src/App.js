@@ -6,6 +6,7 @@ import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import "../src/index.css";
 import { useEffect } from 'react';
+import CreateAccountPage from './pages/createAccountPage';
 
 
 
@@ -23,20 +24,21 @@ export default function App() {
  
   return (
 
-    <div className='font-mono bg-gray-900 text-gray-100 min-h-screen '>
+    
       
         <Routes>
 
                <Route index element={<Homepage />} />
               <Route path="/Profile/:username" element={<ProfilePage />} />
               <Route path="/Login" element={<LoginPage />} />   
+              <Route path="/Signup" element={<CreateAccountPage />} />
               
              
               
              
         </Routes>
         
-        </div>
+      
     
   )
 }
