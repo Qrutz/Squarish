@@ -1,11 +1,9 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import FriendCard from './FriendCard/FriendCard';
 import {FaRegUser} from 'react-icons/fa';
-import { UserContext } from '../../context/userContext';
 import axios from 'axios';
 
 export default function RightSideBar() {
-  const {CurrentUser} = useContext(UserContext);
   const [friends, setFriends] = React.useState([]);
   const [friendArrCopy, setFriendArrCopy] = React.useState(friends);
 

@@ -1,22 +1,18 @@
-import React, { useContext } from 'react';
-import { UserContext } from './context/userContext';
+import React from 'react';
 import Homepage from './pages/homepage';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import "../src/index.css";
-import { useEffect } from 'react';
 import CreateAccountPage from './pages/createAccountPage';
 import UserPage from './pages/UserPage';
-import axios from 'axios';
+
 
 
     
 
 export default function App() {
-  const userContext = useContext(UserContext);
 
-  const { CurrentUser, setCurrentUser  } = userContext;
 
 
     

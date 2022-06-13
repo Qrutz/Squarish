@@ -1,13 +1,11 @@
-import React, {useContext, useState} from 'react';
-import {UserContext} from '../../context/userContext';
+import React, {useState} from 'react';
 import axios from 'axios';
 
 export default function SignInForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const userContext = useContext(UserContext);
-    const { setCurrentUser } = userContext;
+   
 
     async function handleSubmit(e) {
         e.preventDefault();

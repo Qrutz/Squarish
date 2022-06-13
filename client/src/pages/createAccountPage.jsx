@@ -1,6 +1,4 @@
 import React from 'react'
-
-import SquarishBanner from '../Components/Navbar/SquarishBanner'
 import { GrSquare } from 'react-icons/gr'
 import CreateAccountForm from '../Components/SignUp/createAccountForm'
 

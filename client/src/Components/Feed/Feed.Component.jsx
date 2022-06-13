@@ -2,8 +2,6 @@ import React, {useContext, useEffect} from 'react';
 import PostCard from "./postCard/PostCard"
 import {FaRegUser} from 'react-icons/fa'
 import PostTab from './PostTab/PostTab'
-import { getTimeLine } from '../../hooks/requests';
-import {createPost} from '../../hooks/requests';
 import { SearchContext } from '../../context/searchContext';
 import axios from 'axios';
 
@@ -17,9 +15,11 @@ export default function Feed() {
   const config = {
     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
 }
+
    
     
     useEffect(()  =>  {
+     
        
         axios.get(`http://localhost:5000/api/posts/userTimeline/`, config)
         .then(res => {
@@ -33,10 +33,10 @@ export default function Feed() {
         )
     }, [posts]);
 
-
-
+   
 
     function HandleSubmit(e) {
+      
       e.preventDefault();
       const val = Search;
       try {

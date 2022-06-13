@@ -20,16 +20,16 @@ export default function ProfilePage() {
 
 
    //  const profilePicToString = CurrentUser ? String(CurrentUser.profilePicture) : '';
-   const [user, setUser] = useState({});
    const [posts, setPosts] = useState({});
 
-   const config = {
-      headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
-  }
+   
 
 
 
       useEffect(() => {
+         const config = {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        }
          if (CurrentUser.username !== undefined) {
             const fetchPosts = async () => {
                const res = await axios.get(`http://localhost:5000/api/posts/getAllPostByUser`, config);

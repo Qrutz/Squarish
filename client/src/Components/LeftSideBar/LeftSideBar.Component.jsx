@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react'
-import {FaRegUser} from 'react-icons/fa'
 import UserCard from './UserCard/UserCard'
 import TabList from './TabList/TabList'
 import {Outlet} from 'react-router-dom'

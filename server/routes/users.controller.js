@@ -252,12 +252,13 @@ async function getFollowings(req, res) {
 module.exports = {
     AddNewUser,
     logInUser,
-    httpGetUser,
+    httpGetUser, 
     followUser,
     httpGetAllUsers,
     authenticateToken,
     editUserBio,
     getFriendUserProfile,
-    getFollowings
+    getFollowings,
+    unfollowUser
     
 }

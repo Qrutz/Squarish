@@ -5,7 +5,7 @@ import {FaRegUser} from 'react-icons/fa';
 
 export default function UserCard(props) {
     const [posts, setPosts] = useState([])
-    const [postCopyArr, setPostCopyArr] = useState(posts)
+    
 
 
     useEffect(() => {
@@ -35,6 +35,7 @@ export default function UserCard(props) {
 
     function handleFollow() {
         const username = window.location.pathname.split('/')[2];
+        setIsFollowing(true);
         axios.put(`http://localhost:5000/api/users/follow/${username}`, {
             
             }, 
@@ -51,22 +52,47 @@ export default function UserCard(props) {
             )
             
     }
-    
+    function handleUnfollow() {
+        const username = window.location.pathname.split('/')[2];
+        setIsFollowing(false);
+        axios.put(`http://localhost:5000/api/users/unfollow/${username}`, {
+    }, {headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }})
+    .then(res => {
+        console.log(res.data);
+    }
+    )
+    .catch(err => {
+        console.log(err);
+    }
+    )
+    }
 
 
     
      
+    const [isFollowing, setIsFollowing] = useState(false);
 
 
+   
 
-
+    const showButton = () => {
+        if (isFollowing) {
+            return <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200' onClick={handleUnfollow}>Unfollow</button>
+        }
+        else {
+            return <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200' onClick={handleFollow}>Follow</button>
+        }
+    }
+    
     
   return (
     <div className='border-2 border-gray-800 rounded-lg md:w-[34rem] mt-2 '>
     <div className='p-4'> 
     <div className='flex justify-between'>
     <img className=' w-28 rounded-full' src={props.profilePicture} alt="aa" />
-    <button  onClick={handleFollow}   className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
+    {showButton()}
  </div>
  <h2 className='text-2xl mt-5'>{props.name}</h2>
  <p className=' text-slate-400'>@{props.username}</p>

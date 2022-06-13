@@ -3,7 +3,6 @@ import RightSideBar from '../Components/RightSideBarComponent/RightSideBar.Compo
 import LeftSideBar from '../Components/LeftSideBar/LeftSideBar.Component';
 import Feed from '../Components/Feed/Feed.Component';
 import {UserContext} from '../context/userContext';
-import { Routes, Route, Link } from "react-router-dom";
 import Navbar from '../Components/Navbar/Navbar.Component';
 
 

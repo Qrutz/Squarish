@@ -8,8 +8,8 @@ import RightSideBar from '../Components/RightSideBarComponent/RightSideBar.Compo
 
 export default function UserPage() {
     const [user, setUser] = useState({});
-    const [loaded, setLoaded] = useState(false);
-    const [posts, setPosts] = useState([])
+    // const [loaded, setLoaded] = useState(false);
+    const [following, setFollowing] = useState(false);
     
 
     const userContext = useContext(UserContext)
@@ -23,20 +23,23 @@ export default function UserPage() {
             try {
                 const res = await axios.get(`http://localhost:5000/api/users/profile/${username}`);
                 setUser(res.data);
-                setLoaded(true);
+                // setLoaded(true);
+                res.data.followers.includes(localStorage.getItem("username")) ? setFollowing(true) : setFollowing(false);
+            
+                
             
         }
         catch (err) {   
             console.log("User doesnt exist !",err);
-            setLoaded(false);
+            // setLoaded(false);
         }
         }
         fetchUser();
     }, []);
 
 
-    const following = (user.following) === undefined ? "" : (user.following).length;
-    const followers = (user.followers) === undefined ? "" : (user.followers).length;
+    // const following = (user.following) === undefined ? "" : (user.following).length;
+    // const followers = (user.followers) === undefined ? "" : (user.followers).length;
 
   return (
 <>
@@ -45,7 +48,7 @@ export default function UserPage() {
         <Navbar />
         <div className='flex justify-center p-2'>
         <LeftSideBar name={CurrentUser.name} username={CurrentUser.username} profilePicture={CurrentUser.profilePicture} />
-        <UserCard followers={followers} following={following} name={user.name} username={user.username} profilePicture={user.profilePicture} bio={user.bio} />
+        <UserCard  followers={2} following={3} name={user.name} username={user.username} profilePicture={user.profilePicture} bio={user.bio} />
         <RightSideBar />
  </div>
     </div>
