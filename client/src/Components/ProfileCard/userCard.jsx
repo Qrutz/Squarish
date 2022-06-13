@@ -30,7 +30,20 @@ export default function UserCard(props) {
 
             }
             
+    
     }
+    // const config = {
+    //     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+    // }
+    // //  async function handleSubmit(e) {
+    // //     e.preventDefault();
+    // //     const username = window.location.pathname.split('/')[2];
+    // //     await axios.put(`http://localhost:5000/api/users/follow/${username}`, config);
+        
+      
+       
+    // // }
+
 
 
 
@@ -40,7 +53,7 @@ export default function UserCard(props) {
     <div className='p-4'> 
     <div className='flex justify-between'>
     <img className=' w-28 rounded-full' src={props.profilePicture} alt="aa" />
-    <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
+    <button     className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
  </div>
  <h2 className='text-2xl mt-5'>{props.name}</h2>
  <p className=' text-slate-400'>@{props.username}</p>

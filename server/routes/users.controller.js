@@ -166,36 +166,71 @@ async function httpGetAllUsers(req, res) {
     }
 }
 async function followUser(req, res) {
-    // username follow id 
-    const { id } = req.params;
-    const { username } = req.body;
-    try { 
-        const userToFollow = await User.findOne({ _id: id });
-        const userThatGetFollowed = await User.findOne({ username }); 
-
-        if (userThatGetFollowed.followers.includes(userToFollow.username) || userToFollow.following.includes(userThatGetFollowed.username)) {
-            return res.status(500).json({
-                message: "User is already following" 
-            })
-        }
-
-        if (!userToFollow) {
+    const username = req.user.username;
+    const {following} = req.params;
+    try {
+        const user = await User.findOne({ username });
+        const followingUser = await User.findOne({ username: following });
+        if (!user) {
             return res.status(404).json({
                 message: "User not found"
             });
-}
-        userToFollow.following.push(username);
-        userThatGetFollowed.followers.push(userToFollow.username);
-        await userToFollow.save();
-        await userThatGetFollowed.save();
+        }
+        if (!followingUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        if (user.following.includes(followingUser.username)) {
+            return res.status(400).json({
+                message: "User already following"
+            });
+        }
+        user.following.push(followingUser.username);
+        followingUser.followers.push(user.username)
+        await saveUser(user);
+        await saveUser(followingUser);
         res.status(200).json({
             message: "User followed successfully"
         });
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error);
     }
 }
+async function unfollowUser(req, res) {
+    const username = req.user.username;
+    const {following} = req.params;
+    try {
+        const user = await User.findOne({ username });
+        const followingUser = await User.findOne({ username: following });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        if (!followingUser) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        if (!user.following.includes(followingUser.username)) {
+            return res.status(400).json({
+                message: "User not following"
+            });
+        }
+        user.following = user.following.filter(user => user !== followingUser.username);
+        followingUser.followers = followingUser.followers.filter(user => user !== user.username);
+        await saveUser(user);
+        await saveUser(followingUser);
+        res.status(200).json({
+            message: "User unfollowed successfully"
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 async function getFollowings(req, res) {
     const  username  = req.user.username;
@@ -203,7 +238,7 @@ async function getFollowings(req, res) {
         const user = await User.findOne({ username });
         if (!user) {
             return res.status(404).json({
-                message: "User not found"
+                message: "User not foundD"
             });
         }
         const followings = user.following;
