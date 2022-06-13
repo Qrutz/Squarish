@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import FriendCard from './FriendCard/FriendCard';
 import {FaRegUser} from 'react-icons/fa';
 import { UserContext } from '../../context/userContext';
+import axios from 'axios';
 
 export default function RightSideBar() {
   const {CurrentUser} = useContext(UserContext);
@@ -11,13 +12,16 @@ export default function RightSideBar() {
 
 
   useEffect(() => {
-    setFriendArrCopy(CurrentUser.friends);
+    const fetchFriends = async () => {
+      const res = await axios.get(`http://localhost:5000/api/users/following/people`,
+        {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}});
+      setFriendArrCopy(res.data);
+    }
+    fetchFriends();
+  }, [friends]);
 
 
-
-  }
-  , [friends]);
-
+ 
   
 
   return (
@@ -30,8 +34,12 @@ export default function RightSideBar() {
       <FriendCard profilePicture={FaRegUser} name="Name Lastname" />
       <FriendCard profilePicture={FaRegUser} name="Name Lastname" /> */}
       
-        <FriendCard  profilePicture={FaRegUser} name={"s"}/>
-        <FriendCard  profilePicture={FaRegUser}  />
+        {/* <FriendCard  profilePicture={FaRegUser} name={"s"}/>
+        <FriendCard  profilePicture={FaRegUser}  /> */}
+        {friendArrCopy.map(friend => {
+          return <FriendCard key={friend}  profilePicture={FaRegUser} username={friend} name={friend} />
+        }
+        )}
 
     </div>
   )

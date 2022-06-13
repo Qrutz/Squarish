@@ -7,7 +7,8 @@ import LoginPage from './pages/LoginPage';
 import "../src/index.css";
 import { useEffect } from 'react';
 import CreateAccountPage from './pages/createAccountPage';
-
+import UserPage from './pages/UserPage';
+import axios from 'axios';
 
 
     
@@ -16,6 +17,9 @@ export default function App() {
   const userContext = useContext(UserContext);
 
   const { CurrentUser, setCurrentUser  } = userContext;
+
+
+    
 
 
  
@@ -30,6 +34,7 @@ export default function App() {
 
                <Route index element={<Homepage />} />
               <Route path="/Profile/:username" element={<ProfilePage />} />
+              <Route path="/user/:username" element={<UserPage />} />
               <Route path="/Login" element={<LoginPage />} />   
               <Route path="/Signup" element={<CreateAccountPage />} />
               

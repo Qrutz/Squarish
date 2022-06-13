@@ -26,7 +26,7 @@ async function addPost(req, res) {
     }
 }
 
-async function getAllPostByUser(req, res) {
+async function getAllPostByCurrentUser(req, res) {
     const username  = req.user.username;
     try {
         const user = await User.findOne({ username });
@@ -60,6 +60,27 @@ async function userTimeline(req, res) {
         console.log(error);
     }
 }
+
+async function getUserPosts(req, res) {
+    const { username } = req.params;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            });
+        }
+        const posts = await Post.find({ createdBy: username });
+        res.status(200).json(posts);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+            
+
+
 
 async function likePost(req, res) {
     const { username, postId } = req.body;
@@ -116,9 +137,10 @@ async function deletePost(req, res) {
 
 module.exports = {
     addPost,
-    getAllPostByUser,
+    getAllPostByCurrentUser,
     userTimeline,
     likePost,
-    deletePost
+    deletePost,
+    getUserPosts
     
 }

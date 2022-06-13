@@ -126,6 +126,33 @@ async function httpGetUser(req, res) {
         console.log(error);
     }
 }
+async function getFriendUserProfile(req, res) {
+    const { username } = req.params;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        // 
+         // only get the users username, name,  bio, profile picture, followers,following, posts, _id
+        const userProfile = {
+            username: user.username,
+            name: user.name,
+            bio: user.bio,
+            profilePicture: user.profilePicture,
+            followers: user.followers,
+            following: user.following,
+            posts: user.posts,
+            _id: user._id
+        };
+        res.status(200).json(userProfile);      
+    } catch (error) {
+    console.log(error);
+}}
+
+
 
 
 
@@ -170,6 +197,23 @@ async function followUser(req, res) {
     }
 }
 
+async function getFollowings(req, res) {
+    const  username  = req.user.username;
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+        const followings = user.following;
+        res.status(200).json(followings);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     AddNewUser,
     logInUser,
@@ -177,6 +221,8 @@ module.exports = {
     followUser,
     httpGetAllUsers,
     authenticateToken,
-    editUserBio
+    editUserBio,
+    getFriendUserProfile,
+    getFollowings
     
 }

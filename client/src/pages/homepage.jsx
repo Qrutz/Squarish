@@ -32,7 +32,7 @@ export default function Homepage() {
     <div className='flex justify-center p-2 '>
       <LeftSideBar name={name} username={username} profilePicture={CurrentUser.profilePicture} />
         <Feed />
-        {/* <RightSideBar /> */}
+        <RightSideBar />
     </div>
     </div>
   )

@@ -51,12 +51,12 @@ export default function ProfileCard() {
 
     // const profilepic = (CurrentUser.profilePicture === undefined) ? 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' : CurrentUser.profilePicture
 
-
+    const following= (CurrentUser.following === undefined) ? "" : (CurrentUser.following).length
+    const followers= (CurrentUser.followers === undefined) ? "" : (CurrentUser.followers).length
   return (
     <div>
     <div className='flex justify-between'>
     <img className=' w-28 rounded-full' src={CurrentUser.profilePicture} alt="aa" />
-    <button className='text-sm md:text-lg mt-4 mr-6 w-16 md:w-24 rounded-3xl h-12 bg-stone-100 text-gray-900 hover:bg-stone-200'>Follow</button>
  </div>
  <h2 className='text-2xl mt-5'>{CurrentUser.name}</h2>
  <p className=' text-slate-400'>@{CurrentUser.name}</p>
@@ -67,8 +67,8 @@ export default function ProfileCard() {
     {!toggle ? <FaRegEdit onClick={() => setToggle(!toggle)} className='ml-3 self-center cursor-pointer'>Edit bio</FaRegEdit>  : <div className='self-center flex space-x-2 text-2xl'> <GiConfirmed onClick={handleSubmit} className='ml-3 cursor-pointer '>Submit changes</GiConfirmed> <MdCancel className='cursor-pointer' onClick={handleCancel}>Cancel</MdCancel> </div>}
     </div>
  <div className='flex'>
-      <p className='leading-tight'> <strong>{(CurrentUser.following).length}  </strong>following</p> 
-      <p className='ml-5 leading-tight'> <strong>{(CurrentUser.followers).length}</strong> followers </p>
+      <p className='leading-tight'> <strong>{following}  </strong>following</p> 
+      <p className='ml-5 leading-tight'> <strong>{followers}</strong> followers </p>
  </div>
  </div>
   )

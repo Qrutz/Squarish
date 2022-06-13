@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import {FaRegUser} from 'react-icons/fa';
 import Navbar from '../Components/Navbar/Navbar.Component';
 import ProfileCard from '../Components/ProfileCard/ProfileCard';
+import RightSideBar from '../Components/RightSideBarComponent/RightSideBar.Component';
 
 
 export default function ProfilePage() {
@@ -86,8 +87,9 @@ export default function ProfilePage() {
 
            </div> 
            
-
+           <RightSideBar />
         </div>
+       
       </div>
         
     
