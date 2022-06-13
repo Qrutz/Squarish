@@ -23,6 +23,14 @@ export default function Homepage() {
     
   }
   , [CurrentUser]);
+
+     useEffect(() => {
+      if (localStorage.getItem('username') === null) {
+            window.location.href = "/login";
+        }
+      return 
+      }, [])
+
     
 
 
