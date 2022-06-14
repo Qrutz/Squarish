@@ -9,6 +9,7 @@ export default function UserCard(props) {
 
 
     useEffect(() => {
+        console.log("usercard trig")
         async function fetchUserPosts() {
             const username = window.location.pathname.split('/')[2];
             try {

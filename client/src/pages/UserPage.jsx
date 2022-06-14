@@ -5,6 +5,7 @@ import {UserContext} from '../context/userContext';
 import LeftSideBar from '../Components/LeftSideBar/LeftSideBar.Component';
 import UserCard from '../Components/ProfileCard/userCard';
 import RightSideBar from '../Components/RightSideBarComponent/RightSideBar.Component';
+import { useParams } from 'react-router';
 
 export default function UserPage() {
     const [user, setUser] = useState({});
@@ -15,13 +16,18 @@ export default function UserPage() {
     const userContext = useContext(UserContext)
     const {CurrentUser} = userContext
 
+    const uname = useParams()
+    
+   
+
 
 
     useEffect(() => {
-        const username = window.location.pathname.split('/')[2];
+       
+        
         const fetchUser = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/users/profile/${username}`);
+                const res = await axios.get(`http://localhost:5000/api/users/profile/${uname.username}`);
                 setUser(res.data);
                 // setLoaded(true);
                 res.data.followers.includes(localStorage.getItem("username")) ? setFollowing(true) : setFollowing(false);
@@ -35,7 +41,7 @@ export default function UserPage() {
         }
         }
         fetchUser();
-    }, []);
+    }, [uname]);
 
 
     // const following = (user.following) === undefined ? "" : (user.following).length;

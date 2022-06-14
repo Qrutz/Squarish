@@ -8,6 +8,7 @@ userRouter.post('/login', logInUser);
 userRouter.get('/:username',authenticateToken, httpGetUser);
 userRouter.get('/profile/:username', getFriendUserProfile);
 userRouter.put('/editUser/',authenticateToken, editUserBio);
+userRouter.get("/users/GetAllUsers",httpGetAllUsers);
 userRouter.get("/users/s", httpGetAllUsers);
 userRouter.put("/follow/:following", authenticateToken, followUser);
 userRouter.get("/getUser/sa", authenticateToken)
