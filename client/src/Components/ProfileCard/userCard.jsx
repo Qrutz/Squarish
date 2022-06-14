@@ -1,15 +1,26 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import axios from 'axios';
 import PostCard from '../Feed/postCard/PostCard';
 import {FaRegUser} from 'react-icons/fa';
+import {UserContext} from '../../context/userContext';
+import {useParams} from 'react-router-dom';
+
 
 export default function UserCard(props) {
     const [posts, setPosts] = useState([])
+
+    const userContext = useContext(UserContext)
+    const {CurrentUser} = userContext
+
+    const uname = useParams()
     
+
+   
+
+
 
 
     useEffect(() => {
-        console.log("usercard trig")
         async function fetchUserPosts() {
             const username = window.location.pathname.split('/')[2];
             try {
@@ -36,7 +47,7 @@ export default function UserCard(props) {
 
     function handleFollow() {
         const username = window.location.pathname.split('/')[2];
-        setIsFollowing(true);
+        setIsFollowing(!isFollowing);
         axios.put(`http://localhost:5000/api/users/follow/${username}`, {
             
             }, 
@@ -55,7 +66,7 @@ export default function UserCard(props) {
     }
     function handleUnfollow() {
         const username = window.location.pathname.split('/')[2];
-        setIsFollowing(false);
+        setIsFollowing(!isFollowing);
         axios.put(`http://localhost:5000/api/users/unfollow/${username}`, {
     }, {headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -69,12 +80,12 @@ export default function UserCard(props) {
     }
     )
     }
+    const [isFollowing, setIsFollowing] = useState(false);
 
 
     
      
-    const [isFollowing, setIsFollowing] = useState(false);
-
+   
 
    
 
