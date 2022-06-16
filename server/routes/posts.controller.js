@@ -1,5 +1,6 @@
 const Post = require("../models/posts/post.mongo");
 const User = require("../models/user/users.mongo");
+const Comment = require("../models/comments/comment.mongo");
 const {getAllFollowers} = require('../models/user/users.model');
 
 const {savePost} = require('../models/posts/post.model');
@@ -25,6 +26,27 @@ async function addPost(req, res) {
         console.log(error);
     }
 }
+async function addComment(req, res) {
+    const { content } = req.body;
+    const createdBy = req.user.username;
+    const postId = req.params.id;
+    try {
+        const comment = new Comment({
+            content,
+            createdBy,
+            postId,
+        });
+        await comment.save();
+        res.status(201).json({
+            message: "Comment created successfully"
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 async function getAllPostByCurrentUser(req, res) {
     const username  = req.user.username;
@@ -133,6 +155,36 @@ async function deletePost(req, res) {
     }
 }
 
+async function getAllComments(req, res) {
+    const { Post_ID } = req.body;
+    try {
+        const comments = await Comment.find({ Post_ID });
+        res.status(200).json(comments);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+async function createComment(req, res) {
+    const { content, Post_ID } = req.body;
+    const createdBy = req.user.username;
+    try {
+        const comment = new Comment({
+            content,
+            createdBy,
+            Post_ID,
+        });
+        await comment.save();
+        res.status(201).json({
+            message: "Comment created successfully" 
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+
         
 
 module.exports = {
@@ -141,6 +193,8 @@ module.exports = {
     userTimeline,
     likePost,
     deletePost,
-    getUserPosts
+    getUserPosts,
+    createComment,
+    getAllComments
     
 }
