@@ -156,9 +156,9 @@ async function deletePost(req, res) {
 }
 
 async function getAllComments(req, res) {
-    const { Post_ID } = req.body;
+    const { postid } = req.params;
     try {
-        const comments = await Comment.find({ Post_ID });
+        const comments = await Comment.find({ postid });
         res.status(200).json(comments);
     }
     catch (error) {
@@ -175,6 +175,10 @@ async function createComment(req, res) {
             Post_ID,
         });
         await comment.save();
+        //update the post with the new comment
+        const post = await Post.findOne({ _id: Post_ID });
+        post.comments += 1;
+        await post.save();
         res.status(201).json({
             message: "Comment created successfully" 
         });
@@ -185,7 +189,6 @@ async function createComment(req, res) {
 }
 
 
-        
 
 module.exports = {
     addPost,

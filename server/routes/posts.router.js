@@ -12,7 +12,7 @@ postRouter.delete('/deletePost', authenticateToken, deletePost);
 
 postRouter.post('/createComment', authenticateToken, createComment);
 
-postRouter.get('/getAllCommentsUnderPost/', getAllComments);
+postRouter.get('/getAllCommentsUnderPost/:postid', getAllComments);
 
 
 
