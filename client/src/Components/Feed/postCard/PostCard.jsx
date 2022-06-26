@@ -51,13 +51,6 @@ export default function PostCard(props) {
     }
 
 
-    async function getCommentsForPost(id) {
-      //filter comments by post id
-      const filteredComments = comments.filter(comment => comment.Post_ID === id);
-      console.log(filteredComments);
-    }
-
-      
 
 
    
@@ -88,7 +81,7 @@ export default function PostCard(props) {
             <div className='justify-evenly my-4 border-b-2 border-gray-800 inline-block  md:flex text-xs md:text  '>
              
                 <div className='flex md:mb-4' > 
-                <GoComment className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer ' onClick={() => getCommentsForPost(props.id)} />
+                <GoComment className='text-lg md:text-3xl hover:text-2xl md:hover:text-4xl mr-4 ml-4  cursor-pointer ' />
                 <p className='-sm mb-2'>{props.comments} Comments</p>
                 </div>
                 <div className='flex'> 
